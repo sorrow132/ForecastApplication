@@ -69,8 +69,6 @@ class CurrentWeatherFragment : Fragment() {
                     textViewPrecipitationCurrent.text = state.weather.humidity
                     textViewVisibilityCurrent.text = state.weather.pressure
                 }
-                is WeatherState.LoadFutureInfo -> {
-                }
                 is WeatherState.Error -> {
                     textViewTemperatureCurrent.visibility = View.GONE
                     textViewConditionCurrent.visibility = View.GONE

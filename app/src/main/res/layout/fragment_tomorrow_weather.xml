@@ -15,7 +15,7 @@
         app:layout_constraintGuide_begin="206dp" />
 
     <TextView
-        android:id="@+id/textView_condition"
+        android:id="@+id/textViewConditionTomorrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -32,7 +32,7 @@
         tools:text="Rain" />
 
     <ProgressBar
-        android:id="@+id/progressBar_loading"
+        android:id="@+id/progressBarLoadingTomorrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView_loading"
+        android:id="@+id/textViewLoadingTomorrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -55,11 +55,11 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/progressBar_loading"
+        app:layout_constraintTop_toBottomOf="@+id/progressBarLoadingTomorrow"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
-        android:id="@+id/temperature_text_view"
+        android:id="@+id/textViewTemperatureTomorrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -68,16 +68,16 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Headline2"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView_condition_icon_tomorrow"
+        app:layout_constraintBottom_toBottomOf="@+id/imageViewConditionTomorrow"
         app:layout_constraintEnd_toStartOf="@id/guideline"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView_condition_icon_tomorrow"
+        app:layout_constraintTop_toTopOf="@+id/imageViewConditionTomorrow"
         app:layout_constraintVertical_bias="1.0"
         tools:text="25.0°C" />
 
     <ImageView
-        android:id="@+id/imageView_condition_icon_tomorrow"
+        android:id="@+id/imageViewConditionTomorrow"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
@@ -96,7 +96,7 @@
         tools:tint="#f9a920" />
 
     <TextView
-        android:id="@+id/textView_feels_like_temperature"
+        android:id="@+id/textViewFeelsLikeTomorrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -104,15 +104,15 @@
         android:layout_marginBottom="8dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/temperature_text_view"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTemperatureTomorrow"
         app:layout_constraintHorizontal_bias="0.423"
-        app:layout_constraintStart_toStartOf="@+id/temperature_text_view"
-        app:layout_constraintTop_toBottomOf="@+id/temperature_text_view"
+        app:layout_constraintStart_toStartOf="@+id/textViewTemperatureTomorrow"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTemperatureTomorrow"
         app:layout_constraintVertical_bias="0.0"
         tools:text="Feels like 20.4°C" />
 
     <TextView
-        android:id="@+id/textView_wind_current"
+        android:id="@+id/textViewWindTomorrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -129,7 +129,7 @@
         tools:text="Wind: SE, 5.3 m/s" />
 
     <TextView
-        android:id="@+id/textView_precipitation"
+        android:id="@+id/textViewPrecipitationTomorrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -141,12 +141,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_wind_current"
+        app:layout_constraintTop_toBottomOf="@+id/textViewWindTomorrow"
         app:layout_constraintVertical_bias="0.0"
         tools:text="Precipitation: 5 mm" />
 
     <TextView
-        android:id="@+id/textView_visibility"
+        android:id="@+id/textViewVisibilityTomorrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -158,19 +158,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.031"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_precipitation"
+        app:layout_constraintTop_toBottomOf="@+id/textViewPrecipitationTomorrow"
         app:layout_constraintVertical_bias="0.0"
         tools:text="Visibility: 20 km" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
+        android:id="@+id/recyclerViewTomorrow"
         android:layout_width="411dp"
         android:layout_height="176dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView_loading"
+        app:layout_constraintTop_toBottomOf="@+id/textViewLoadingTomorrow"
         app:layout_constraintVertical_bias="1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

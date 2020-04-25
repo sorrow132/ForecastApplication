@@ -1,7 +1,7 @@
 package com.example.forecastapplication
 
 import com.example.forecastapplication.model.CurrentWeatherModel
-import com.example.forecastapplication.model.data.ForecastList
+import com.example.forecastapplication.model.TomorrowWeatherModel
 
 sealed class WeatherState {
 
@@ -12,7 +12,7 @@ sealed class WeatherState {
     ) : WeatherState()
 
     data class LoadFutureInfo(
-        val weather: ForecastList
+        val weather: TomorrowWeatherModel
     ) : WeatherState()
 
     data class Error(
