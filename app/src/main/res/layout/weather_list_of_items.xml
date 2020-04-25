@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="8dp"
+    tools:context=".view.ui.MainActivity">
+
+    <TextView
+        android:id="@+id/textView_hour_one"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textSize="20sp"
+        tools:text="HOUR" />
+
+    <ImageView
+        android:id="@+id/imageView_condition_icon_tomorrow"
+        android:layout_width="79dp"
+        android:layout_height="72dp"
+        android:padding="8dp"
+        android:src="@drawable/icon_04d" />
+
+    <TextView
+        android:id="@+id/textView_weather_one"
+        android:layout_width="match_parent"
+        android:layout_height="151dp"
+        android:layout_marginBottom="536dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6"
+        android:textSize="20sp"
+        tools:text="WEATHER" />
+
+</LinearLayout>
