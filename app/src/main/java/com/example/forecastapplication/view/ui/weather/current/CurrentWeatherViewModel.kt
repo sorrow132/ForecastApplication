@@ -1,4 +1,4 @@
-package com.example.forecastapplication.view.ui.current
+package com.example.forecastapplication.view.ui.weather.current
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -32,7 +32,7 @@ class CurrentWeatherViewModel(private val issueRepository: IRepository) : ViewMo
                     "Wind: SE, " + response.wind.speed.toString() + " m/s",
                     "Humidity: " + response.main.humidity.toString() + " %",
                     "Pressure: " + response.main.pressure.toString(),
-                    response.weather[0].icon
+                    "https://openweathermap.org/img/wn/${response.weather[0].icon}.png"
                 )
             }
             .subscribeOn(Schedulers.io())

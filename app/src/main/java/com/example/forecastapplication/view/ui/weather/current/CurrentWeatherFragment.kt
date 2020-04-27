@@ -1,4 +1,4 @@
-package com.example.forecastapplication.view.ui.current
+package com.example.forecastapplication.view.ui.weather.current
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -13,6 +13,9 @@ import com.example.forecastapplication.WeatherState
 import com.example.forecastapplication.model.repository.IRepository
 import com.example.forecastapplication.model.repository.RepositoryImpl
 import com.example.forecastapplication.model.request.NetworkService
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_current_weather.*
 
 class CurrentWeatherFragment : Fragment() {
@@ -47,6 +50,8 @@ class CurrentWeatherFragment : Fragment() {
                     textViewWindCurrent.visibility = View.GONE
                     textViewPrecipitationCurrent.visibility = View.GONE
                     textViewVisibilityCurrent.visibility = View.GONE
+                    textViewErrorCurrent.visibility = View.GONE
+                    buttonRetryCurrent.visibility = View.GONE
                     progressBarLoadingCurrent.visibility = View.VISIBLE
                     textViewLoadingCurrent.visibility = View.VISIBLE
                 }
@@ -58,6 +63,8 @@ class CurrentWeatherFragment : Fragment() {
                     textViewWindCurrent.visibility = View.VISIBLE
                     textViewPrecipitationCurrent.visibility = View.VISIBLE
                     textViewVisibilityCurrent.visibility = View.VISIBLE
+                    textViewErrorCurrent.visibility = View.GONE
+                    buttonRetryCurrent.visibility = View.GONE
                     progressBarLoadingCurrent.visibility = View.GONE
                     textViewLoadingCurrent.visibility = View.GONE
 
@@ -68,8 +75,12 @@ class CurrentWeatherFragment : Fragment() {
                     textViewWindCurrent.text = state.weather.wind
                     textViewPrecipitationCurrent.text = state.weather.humidity
                     textViewVisibilityCurrent.text = state.weather.pressure
+                    Picasso.get().load(state.weather.image).into(imageViewCurrent)
+
                 }
                 is WeatherState.Error -> {
+                    buttonRetryCurrent.visibility = View.VISIBLE
+                    textViewErrorCurrent.visibility = View.VISIBLE
                     textViewTemperatureCurrent.visibility = View.GONE
                     textViewConditionCurrent.visibility = View.GONE
                     textViewMaxCurrent.visibility = View.GONE

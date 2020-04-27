@@ -1,5 +1,7 @@
 package com.example.forecastapplication.model
 
+import com.example.forecastapplication.IViewObject
+
 data class TomorrowWeatherModel(
     val status: String,
     val feelsLike: String,
@@ -9,4 +11,4 @@ data class TomorrowWeatherModel(
     val pressure: String,
     val image: String,
     val date: String
-)
+) : IViewObject

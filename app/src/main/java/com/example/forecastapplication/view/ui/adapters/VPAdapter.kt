@@ -1,9 +1,8 @@
-package com.example.forecastapplication.view.ui.adapter
+package com.example.forecastapplication.view.ui.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
 
 class VPAdapter(fragment: FragmentManager) :
     FragmentPagerAdapter(fragment, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
