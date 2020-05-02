@@ -3,7 +3,7 @@ package com.example.forecastapplication.view.ui.adapters
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.forecastapplication.view.ui.weather.future.CustomViewHolderFuture
-import com.example.forecastapplication.IViewObject
+import com.example.forecastapplication.model.IViewObject
 import com.example.forecastapplication.model.FutureWeatherModel
 
 class RecyclerViewAdapterForecast(

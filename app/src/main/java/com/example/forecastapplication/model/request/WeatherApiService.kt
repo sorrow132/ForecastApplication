@@ -9,18 +9,18 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface WeatherApiService {
-
+    //    first time open app (lat, lon )
+    //    api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={your api key}
     @GET("weather")
-    fun requestWeatherForCity(
-        @Query("q") city: String, @Query("appid") apiKey: String, @Query("units") units: String
-    ): Call<CurrentResponse>
+    fun firstWeatherRequest(
+        @Query("lat") lat: Double,
+        @Query("lon") lon: Double,
+        @Query("appid") apiKey: String,
+        @Query("units") units: String
+    ): Single<ForecastList>
 
-    @GET("forecast")
-    fun forecastWeatherForCity(
-        @Query("q") city: String, @Query("appid") key: String, @Query("units") unit: String
-    ): Call<ForecastList>
 
-    //Rx
+    //    Not the first authorization
     @GET("weather")
     fun requestWeatherByCityRx(
         @Query("q") city: String, @Query("appid") apiKey: String, @Query("units") units: String

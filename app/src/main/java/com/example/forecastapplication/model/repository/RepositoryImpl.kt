@@ -10,6 +10,10 @@ const val UNIT: String = "metric"
 
 class RepositoryImpl(private val networkService: WeatherApiService) : IRepository {
 
+    override fun getFirstWeatherInfo(lat: Double, lon: Double): Single<ForecastList> {
+        return networkService.firstWeatherRequest(lat, lon, API_KEY, UNIT)
+    }
+
     override fun getCurrentWeatherInfo(city: String): Single<CurrentResponse> {
         return networkService.requestWeatherByCityRx(city, API_KEY, UNIT)
     }
@@ -17,4 +21,6 @@ class RepositoryImpl(private val networkService: WeatherApiService) : IRepositor
     override fun getFutureWeatherInfo(city: String): Single<ForecastList> {
         return networkService.forecastWeatherByCityRx(city, API_KEY, UNIT)
     }
+
+
 }

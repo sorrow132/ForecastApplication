@@ -13,8 +13,7 @@ import com.example.forecastapplication.WeatherState
 import com.example.forecastapplication.model.repository.IRepository
 import com.example.forecastapplication.model.repository.RepositoryImpl
 import com.example.forecastapplication.model.request.NetworkService
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.dynamic.SupportFragmentWrapper
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.fragment_current_weather.*
 
@@ -29,6 +28,7 @@ class CurrentWeatherFragment : Fragment() {
                     .newInstance(RepositoryImpl(NetworkService().getApiService()))
             }
         }).get(CurrentWeatherViewModel::class.java)
+
     }
 
     override fun onCreateView(
@@ -37,8 +37,6 @@ class CurrentWeatherFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view: View = inflater.inflate(R.layout.fragment_current_weather, container, false)
-
-        viewModel.fetchWeather("Moscow")
 
         viewModel.state.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
@@ -90,11 +88,18 @@ class CurrentWeatherFragment : Fragment() {
                     textViewVisibilityCurrent.visibility = View.GONE
                     progressBarLoadingCurrent.visibility = View.GONE
                     textViewLoadingCurrent.visibility = View.GONE
+
+                    textViewErrorCurrent.text = state.error.message
                 }
             }
-
         })
         return view
     }
+
+//    private fun openDialog() {
+//        val dialog = Dialog()
+//        dialog.activity
+//    }
+
 }
 

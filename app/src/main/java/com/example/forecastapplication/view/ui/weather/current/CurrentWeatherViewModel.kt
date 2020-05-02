@@ -2,8 +2,12 @@ package com.example.forecastapplication.view.ui.weather.current
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.forecastapplication.WeatherApplication
 import com.example.forecastapplication.WeatherState
 import com.example.forecastapplication.model.CurrentWeatherModel
+import com.example.forecastapplication.model.db.BaseLocationDao
+import com.example.forecastapplication.model.db.CitiesDataBase
+import com.example.forecastapplication.model.db.CitiesEntity
 import com.example.forecastapplication.model.repository.IRepository
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -13,10 +17,15 @@ import io.reactivex.schedulers.Schedulers
 class CurrentWeatherViewModel(private val issueRepository: IRepository) : ViewModel(),
     ICurrentWeatherContract {
 
+    override val state: MutableLiveData<WeatherState> = MutableLiveData()
+
     private val compositeDisposable = CompositeDisposable()
+
     private var fetchCurrencyDisposable: Disposable? = null
 
-    override val state: MutableLiveData<WeatherState> = MutableLiveData()
+    init {
+        fetchWeather("Odessa")
+    }
 
     override fun fetchWeather(city: String) {
         fetchCurrencyDisposable?.dispose()
@@ -52,4 +61,12 @@ class CurrentWeatherViewModel(private val issueRepository: IRepository) : ViewMo
     override fun onCleared() {
         compositeDisposable.clear()
     }
+
+    fun addNewLocation(location: String) {
+        val db: CitiesDataBase = WeatherApplication.db
+        val dao: BaseLocationDao = db.locationDao()
+        val city = CitiesEntity(1, location)
+        dao.insert(city)
+    }
+
 }

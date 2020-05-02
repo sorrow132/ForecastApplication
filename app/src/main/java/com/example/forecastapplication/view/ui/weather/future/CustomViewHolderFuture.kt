@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 
 class CustomViewHolderFuture(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context)
-        .inflate(R.layout.forecast_weather_items, parent, false)
+        .inflate(R.layout.forecast_weather_item, parent, false)
 ) {
     private val textViewTemp: TextView = itemView.findViewById(R.id.textViewTemperatureItemForecast)
     private val textViewStatus: TextView = itemView.findViewById(R.id.textViewConditionItemForecast)

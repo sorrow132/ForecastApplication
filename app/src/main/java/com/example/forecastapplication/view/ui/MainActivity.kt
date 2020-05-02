@@ -14,16 +14,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-    }
 
-    override fun onStart() {
-        super.onStart()
         val vpAdapter = VPAdapter(supportFragmentManager)
         vpAdapter.addFragment(CurrentWeatherFragment(), "Current")
         vpAdapter.addFragment(TomorrowWeatherFragment(), "Tomorrow")
         vpAdapter.addFragment(FutureWeatherFragment(), "5 Days")
         view_pager.adapter = vpAdapter
         tab_layout.setupWithViewPager(view_pager)
+
     }
 }
 

@@ -1,7 +1,5 @@
 package com.example.forecastapplication.model
 
-import com.example.forecastapplication.IViewObject
-
 data class TomorrowWeatherModel(
     val status: String,
     val feelsLike: String,

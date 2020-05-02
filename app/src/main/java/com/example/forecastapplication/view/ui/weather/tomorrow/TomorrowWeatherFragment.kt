@@ -17,7 +17,6 @@ import com.example.forecastapplication.model.repository.RepositoryImpl
 import com.example.forecastapplication.model.request.NetworkService
 import com.example.forecastapplication.view.ui.adapters.RecyclerViewAdapterTomorrow
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.fragment_current_weather.*
 import kotlinx.android.synthetic.main.fragment_tomorrow_weather.*
 
 class TomorrowWeatherFragment : Fragment() {

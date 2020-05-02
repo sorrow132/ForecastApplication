@@ -11,7 +11,7 @@ import com.squareup.picasso.Picasso
 
 class CustomViewHolderTomorrow(parent: ViewGroup) : RecyclerView.ViewHolder(
     LayoutInflater.from(parent.context)
-        .inflate(R.layout.weather_list_of_items, parent, false)
+        .inflate(R.layout.weather_list_of_item, parent, false)
 ) {
     var textViewForHours: TextView? = itemView.findViewById(R.id.textView_hour_one)
     var textViewForWeather: TextView? = itemView.findViewById(R.id.textView_weather_one)
