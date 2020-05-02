@@ -20,8 +20,10 @@ class CurrentWeatherViewModel(private val issueRepository: IRepository) : ViewMo
     override val state: MutableLiveData<WeatherState> = MutableLiveData()
 
     private val compositeDisposable = CompositeDisposable()
-
     private var fetchCurrencyDisposable: Disposable? = null
+
+    private val db: CitiesDataBase = WeatherApplication.db
+    private val dao: BaseLocationDao = db.locationDao()
 
     init {
         fetchWeather("Odessa")
@@ -63,10 +65,7 @@ class CurrentWeatherViewModel(private val issueRepository: IRepository) : ViewMo
     }
 
     fun addNewLocation(location: String) {
-        val db: CitiesDataBase = WeatherApplication.db
-        val dao: BaseLocationDao = db.locationDao()
         val city = CitiesEntity(1, location)
         dao.insert(city)
     }
-
 }
