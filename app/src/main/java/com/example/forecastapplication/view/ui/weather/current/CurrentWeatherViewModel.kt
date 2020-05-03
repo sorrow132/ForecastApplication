@@ -22,9 +22,6 @@ class CurrentWeatherViewModel(private val issueRepository: IRepository) : ViewMo
     private val compositeDisposable = CompositeDisposable()
     private var fetchCurrencyDisposable: Disposable? = null
 
-    private val db: CitiesDataBase = WeatherApplication.db
-    private val dao: BaseLocationDao = db.locationDao()
-
     init {
         fetchWeather("Odessa")
     }
@@ -62,10 +59,5 @@ class CurrentWeatherViewModel(private val issueRepository: IRepository) : ViewMo
 
     override fun onCleared() {
         compositeDisposable.clear()
-    }
-
-    fun addNewLocation(location: String) {
-        val city = CitiesEntity(1, location)
-        dao.insert(city)
     }
 }
