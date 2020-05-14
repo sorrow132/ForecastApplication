@@ -1,17 +1,18 @@
 package com.example.forecastapplication
 
 import android.app.Application
-import androidx.room.Room
-import com.example.forecastapplication.model.db.CitiesDataBase
+import com.example.forecastapplication.di.components.AppComponent
+import com.example.forecastapplication.di.components.DaggerAppComponent
+import net.danlew.android.joda.JodaTimeAndroid
 
 class WeatherApplication : Application() {
-    companion object {
-//        lateinit var db: CitiesDataBase
-    }
+    val component: AppComponent = DaggerAppComponent
+        .builder()
+        .appContext(this)
+        .build()
 
     override fun onCreate() {
         super.onCreate()
-//        db = Room.databaseBuilder(WeatherApplication(), CitiesDataBase::class.java, "CitiesDB")
-//            .build()
+        JodaTimeAndroid.init(this)
     }
 }

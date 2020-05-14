@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/morning"
-    tools:context=".view.ui.weather.current.CurrentWeatherFragment">
+    android:background="#85F9FF"
+    tools:context=".currentweather.view.CurrentWeatherFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -194,6 +194,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
+        tools:listitem="@layout/weather_list_of_item"
         app:layout_constraintTop_toBottomOf="@+id/textViewLoadingTomorrow"
         app:layout_constraintVertical_bias="1" />
 

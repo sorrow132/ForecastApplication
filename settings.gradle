@@ -1,2 +1,3 @@
 rootProject.name='ForecastApplication'
 include ':app'
+include ':cities'

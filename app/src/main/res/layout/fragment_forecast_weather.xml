@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/morning"
-    tools:context=".view.ui.weather.future.FutureWeatherFragment">
+    android:background="#85F9FF"
+    tools:context=".futureweather.view.FutureWeatherFragment">
 
     <TextView
         android:id="@+id/textViewLoadingFuture"
@@ -58,6 +58,7 @@
         android:id="@+id/recyclerViewForecast"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:listitem="@layout/forecast_weather_item"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 

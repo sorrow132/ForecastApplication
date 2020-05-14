@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.forecastapplication"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 29
         multiDexEnabled true
         versionCode 1
@@ -47,6 +47,7 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation project(":cities")
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.core:core-ktx:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
@@ -101,4 +102,7 @@ dependencies {
 
     // Stetho
     implementation 'com.facebook.stetho:stetho:1.5.1'
+
+    // Joda
+    implementation 'net.danlew:android.joda:2.10.6'
 }

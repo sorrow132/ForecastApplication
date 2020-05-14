@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/morning"
-    tools:context=".view.ui.weather.current.CurrentWeatherFragment">
+    android:background="#85F9FF"
+    tools:context=".currentweather.view.CurrentWeatherFragment">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
