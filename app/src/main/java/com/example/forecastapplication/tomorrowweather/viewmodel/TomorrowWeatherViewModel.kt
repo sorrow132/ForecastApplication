@@ -2,12 +2,11 @@ package com.example.forecastapplication.tomorrowweather.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.forecastapplication.BaseViewModel
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.tomorrowweather.model.TomorrowWeatherModel
 import com.example.forecastapplication.tomorrowweather.model.TomorrowWeatherState
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
@@ -16,10 +15,9 @@ interface ITomorrowWeatherContract {
     fun fetchInfo(city: String)
 }
 
-class TomorrowWeatherViewModel(private val issueRepository: IRepository) : ViewModel(),
+class TomorrowWeatherViewModel(private val issueRepository: IRepository) : BaseViewModel(),
     ITomorrowWeatherContract {
 
-    private val compositeDisposable = CompositeDisposable()
     private var fetchCurrencyDisposable: Disposable? = null
 
     override val state: MutableLiveData<TomorrowWeatherState> = MutableLiveData()

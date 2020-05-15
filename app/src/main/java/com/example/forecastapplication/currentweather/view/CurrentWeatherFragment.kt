@@ -94,7 +94,6 @@ class CurrentWeatherFragment : Fragment() {
                     textViewVisibilityCurrent.visibility = View.GONE
                     progressBarLoadingCurrent.visibility = View.GONE
                     textViewLoadingCurrent.visibility = View.GONE
-
                     textViewErrorCurrent.text = state.error.message
                 }
             }

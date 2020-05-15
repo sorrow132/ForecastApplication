@@ -3,6 +3,7 @@ package com.example.forecastapplication.currentweather.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.forecastapplication.BaseViewModel
 import com.example.forecastapplication.currentweather.model.CurrentWeatherModel
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.currentweather.model.CurrentWeatherState
@@ -18,12 +19,11 @@ interface ICurrentWeatherContract {
 
 class CurrentWeatherViewModel(
     private val issueRepository: IRepository
-) : ViewModel(),
+) : BaseViewModel(),
     ICurrentWeatherContract {
 
     override val state: MutableLiveData<CurrentWeatherState> = MutableLiveData()
 
-    private val compositeDisposable = CompositeDisposable()
     private var fetchCurrencyDisposable: Disposable? = null
 
     init {
@@ -36,7 +36,6 @@ class CurrentWeatherViewModel(
         val disposable = issueRepository
             .getCurrentWeatherInfo(city)
             .map { response ->
-
                 CurrentWeatherModel(
                     response.weather[0].main,
                     "Max: " + response.main.tempMax.toString() + "°C ",

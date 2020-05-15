@@ -67,9 +67,7 @@ class FutureWeatherFragment : Fragment() {
                     textViewLoadingFuture.visibility = View.GONE
                     recycler.visibility = View.VISIBLE
                     recycler.adapter =
-                        RecyclerViewAdapterForecast(
-                            state.forecastWeather
-                        )
+                        RecyclerViewAdapterForecast(state.forecastWeather)
                 }
                 is FutureWeatherState.Error -> {
                     textViewErrorFuture.visibility = View.VISIBLE

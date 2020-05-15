@@ -16,9 +16,7 @@ class RecyclerViewAdapterListOfCity(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == VIEW_TYPE_ID_WEATHER) {
-            return CustomViewHolderList(
-                parent
-            )
+            return CustomViewHolderList(parent)
         }
         throw IllegalArgumentException("Wrong element")
     }

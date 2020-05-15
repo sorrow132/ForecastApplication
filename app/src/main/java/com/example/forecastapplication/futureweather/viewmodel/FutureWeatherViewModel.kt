@@ -3,6 +3,7 @@ package com.example.forecastapplication.futureweather.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.example.forecastapplication.BaseViewModel
 import com.example.forecastapplication.futureweather.model.FutureWeatherModel
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.futureweather.model.FutureWeatherState
@@ -17,11 +18,10 @@ interface IFutureWeatherViewModel {
     fun fetchInfo(city: String)
 }
 
-class FutureWeatherViewModel @Inject constructor(private val issueRepository: IRepository) :
-    ViewModel(),
+class FutureWeatherViewModel(private val issueRepository: IRepository) :
+    BaseViewModel(),
     IFutureWeatherViewModel {
 
-    private val compositeDisposable = CompositeDisposable()
     private var fetchCurrencyDisposable: Disposable? = null
 
     override val state: MutableLiveData<FutureWeatherState> = MutableLiveData()

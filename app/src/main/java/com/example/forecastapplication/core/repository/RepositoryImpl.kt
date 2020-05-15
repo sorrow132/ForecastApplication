@@ -1,7 +1,5 @@
 package com.example.forecastapplication.core.repository
 
-import com.example.forecastapplication.core.repository.IDBRepository
-import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.core.db.CityEntity
 import com.example.forecastapplication.core.request.WeatherApiService
 import com.example.forecastapplication.core.request.model.CurrentResponse
