@@ -2,10 +2,11 @@ package com.example.forecastapplication.tomorrowweather.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.forecastapplication.BaseViewModel
+import com.example.forecastapplication.core.BaseViewModel
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.tomorrowweather.model.TomorrowWeatherModel
 import com.example.forecastapplication.tomorrowweather.model.TomorrowWeatherState
+import com.example.forecastapplication.utils.addTo
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -24,8 +25,7 @@ class TomorrowWeatherViewModel(private val issueRepository: IRepository) : BaseV
 
     override fun fetchInfo(city: String) {
         fetchCurrencyDisposable?.dispose()
-
-        val disposable = issueRepository
+        issueRepository
             .getFutureWeatherInfo(city)
             .map { list ->
 
@@ -55,8 +55,7 @@ class TomorrowWeatherViewModel(private val issueRepository: IRepository) : BaseV
                 state.value =
                     TomorrowWeatherState.Error(it)
             }
-        compositeDisposable.add(disposable)
-        fetchCurrencyDisposable = disposable
+            .addTo(compositeDisposable)
     }
 
     override fun onCleared() {

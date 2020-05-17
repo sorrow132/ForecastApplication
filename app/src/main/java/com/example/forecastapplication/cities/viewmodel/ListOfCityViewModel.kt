@@ -2,46 +2,49 @@ package com.example.forecastapplication.cities.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.example.forecastapplication.core.BaseViewModel
 import com.example.forecastapplication.cities.model.CitiesState
 import com.example.forecastapplication.cities.model.CityModel
 import com.example.forecastapplication.core.db.CityEntity
 import com.example.forecastapplication.core.repository.IDBRepository
+import com.example.forecastapplication.utils.addTo
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 
 interface IListOfCityViewModelContract {
 
     val state: LiveData<CitiesState>
+
     val cityList: LiveData<List<CityModel>>
-    fun addNewCity(city: CityEntity)
+
+    fun addNewCity(city: String)
+
     fun deleteCity(city: CityEntity)
+
+    fun selectCity(city: CityEntity)
+
+    fun changeStateToAddNew()
+
+    fun changeToDefaultState()
 }
 
-class ListOfCityViewModel(private val cityDatabase: IDBRepository) : ViewModel(),
+class ListOfCityViewModel(private val cityDatabase: IDBRepository) : BaseViewModel(),
     IListOfCityViewModelContract {
 
     override val state: MutableLiveData<CitiesState> = MutableLiveData()
     override val cityList: MutableLiveData<List<CityModel>> = MutableLiveData()
 
-    private val compositeDisposable = CompositeDisposable()
-    private var fetchCurrencyDisposable: Disposable? = null
-
     init {
-        val test = CityEntity("Odessa")
+        initInfoFromDb()
+    }
 
-        cityDatabase.insertCity(test)
-
-        cityDatabase.getAllCities()
-
-        val disposable = cityDatabase
+    private fun initInfoFromDb() {
+        cityDatabase
             .getAllCities()
             .map { listOfCity ->
                 listOfCity.map {
-                    CityModel(city = it.city)
+                    CityModel(entity = it)
                 }
             }
             .subscribeOn(Schedulers.io())
@@ -58,24 +61,46 @@ class ListOfCityViewModel(private val cityDatabase: IDBRepository) : ViewModel()
             }, {
                 state.value = CitiesState.Error(it)
             })
-        compositeDisposable.add(disposable)
-        fetchCurrencyDisposable = disposable
+            .addTo(compositeDisposable)
     }
 
-    override fun addNewCity(city: CityEntity) {
-        Completable
-            .fromAction {
-                cityDatabase.insertCity(city)
-            }
+    override fun addNewCity(city: String) {
+        val cityEntity = CityEntity(city, 0)
+        cityDatabase
+            .insertCity(cityEntity)
             .subscribeOn(Schedulers.io())
             .subscribe()
+            .addTo(compositeDisposable)
     }
 
     override fun deleteCity(city: CityEntity) {
-        Completable.fromAction {
-            cityDatabase.deleteCity(city)
-        }
+        cityDatabase
+            .deleteCity(city)
             .subscribeOn(Schedulers.io())
             .subscribe()
+            .addTo(compositeDisposable)
+    }
+
+    override fun selectCity(city: CityEntity) {
+        Completable
+            .fromAction {
+                cityDatabase.updateSelectedCity(city)
+            }
+            .subscribeOn(Schedulers.io())
+            .subscribe()
+            .addTo(compositeDisposable)
+    }
+
+    override fun changeStateToAddNew() {
+        state.postValue(CitiesState.AddNew)
+    }
+
+    override fun changeToDefaultState() {
+        initInfoFromDb()
+    }
+
+    override fun onCleared() {
+        super.onCleared()
+        compositeDisposable.clear()
     }
 }

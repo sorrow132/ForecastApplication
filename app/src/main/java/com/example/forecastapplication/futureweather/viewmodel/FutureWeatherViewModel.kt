@@ -2,16 +2,14 @@ package com.example.forecastapplication.futureweather.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.forecastapplication.BaseViewModel
+import com.example.forecastapplication.core.BaseViewModel
 import com.example.forecastapplication.futureweather.model.FutureWeatherModel
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.futureweather.model.FutureWeatherState
+import com.example.forecastapplication.utils.addTo
 import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
-import javax.inject.Inject
 
 interface IFutureWeatherViewModel {
     val state: LiveData<FutureWeatherState>
@@ -31,7 +29,8 @@ class FutureWeatherViewModel(private val issueRepository: IRepository) :
     }
 
     override fun fetchInfo(city: String) {
-        val disposable = issueRepository
+        fetchCurrencyDisposable?.dispose()
+        issueRepository
             .getFutureWeatherInfo(city)
             .map { list ->
                 list.weatherList.map { entity ->
@@ -53,8 +52,7 @@ class FutureWeatherViewModel(private val issueRepository: IRepository) :
             }, {
                 state.value = FutureWeatherState.Error(it)
             })
-        compositeDisposable.add(disposable)
-        fetchCurrencyDisposable = disposable
+            .addTo(compositeDisposable)
     }
 
     override fun onCleared() {

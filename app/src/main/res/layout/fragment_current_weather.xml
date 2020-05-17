@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#85F9FF"
+    android:background="@drawable/side_nav_bar"
     tools:context=".currentweather.view.CurrentWeatherFragment">
 
     <androidx.constraintlayout.widget.Guideline
@@ -76,7 +76,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
         android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"
         android:textSize="18sp"

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:cardView="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/listCard"
@@ -12,22 +11,28 @@
     cardView:cardElevation="4dp"
     cardView:cardUseCompatPadding="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
+        android:id="@+id/linearInCardView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="?android:attr/selectableItemBackground"
+        android:gravity="center_vertical"
         android:padding="16dp">
 
         <TextView
             android:id="@+id/listCard_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:textSize="24sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            cardView:layout_constraintStart_toStartOf="parent"
-            cardView:layout_constraintTop_toTopOf="parent"
             tools:text="Москва" />
 
+        <ImageView
+            android:id="@+id/btnDelete"
+            android:layout_width="39dp"
+            android:layout_height="36dp"
+            android:src="@drawable/ic_clear_black_24dp"
+            android:text="@string/removeCity" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

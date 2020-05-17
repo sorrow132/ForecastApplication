@@ -19,5 +19,19 @@ class DatabaseImpl(private val dao: CityDao) :
     override fun deleteCity(city: CityEntity): Completable {
         return dao.deleteCity(city)
     }
+
+    override fun update(city: CityEntity) {
+         dao.update(city)
+    }
+
+    override fun getSelectedCity() {
+        dao.getSelectedCity()
+    }
+
+    override fun updateSelectedCity(city: CityEntity) {
+        dao.updateSelectedCity(city)
+    }
+
+
 }
 

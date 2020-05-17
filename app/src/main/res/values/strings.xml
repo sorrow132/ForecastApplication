@@ -28,4 +28,6 @@
     <string name="addCity">Add</string>
     <string name="cancelCity">Cancel</string>
     <string name="addBtnCity">Add</string>
+    <string name="removeCity">Remove</string>
+    <string name="emptyListTextView">Add some city</string>
 </resources>

@@ -6,7 +6,16 @@ import io.reactivex.Observable
 import io.reactivex.Single
 
 interface IDBRepository {
+
     fun getAllCities(): Observable<List<CityEntity>>
+
     fun insertCity(city: CityEntity): Completable
+
     fun deleteCity(city: CityEntity): Completable
+
+    fun update(city: CityEntity)
+
+    fun getSelectedCity()
+
+    fun updateSelectedCity(city: CityEntity)
 }

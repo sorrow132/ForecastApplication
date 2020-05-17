@@ -27,6 +27,18 @@ class RepositoryImpl(
         return dbRepository.deleteCity(city)
     }
 
+    override fun update(city: CityEntity) {
+        dbRepository.update(city)
+    }
+
+    override fun getSelectedCity() {
+        dbRepository.getSelectedCity()
+    }
+
+    override fun updateSelectedCity(city: CityEntity) {
+        dbRepository.updateSelectedCity(city)
+    }
+
     override fun getCurrentWeatherInfo(city: String): Single<CurrentResponse> {
         return networkService.requestWeatherByCityRx(city, API_KEY, UNIT)
     }

@@ -10,9 +10,7 @@ sealed class CitiesState {
         val city: List<CityModel>
     ) : CitiesState()
 
-    data class AddNew(
-        val city: CityModel
-    ) : CitiesState()
+    object AddNew : CitiesState()
 
     data class Error(
         val error: Throwable

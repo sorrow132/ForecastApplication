@@ -4,10 +4,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.forecastapplication.cities.model.CityModel
 import com.example.forecastapplication.core.IViewObject
+import com.example.forecastapplication.core.db.CityEntity
 import java.lang.IllegalArgumentException
 
 class RecyclerViewAdapterListOfCity(
-    private val infoList: List<IViewObject>
+    private val infoList: List<IViewObject>,
+    private val onRemoveCityListener: (CityEntity) -> Unit,
+    private val onSelectCityListener: (CityEntity) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -16,7 +19,11 @@ class RecyclerViewAdapterListOfCity(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == VIEW_TYPE_ID_WEATHER) {
-            return CustomViewHolderList(parent)
+            return CustomViewHolderList(
+                parent,
+                onRemoveCityListener,
+                onSelectCityListener
+            )
         }
         throw IllegalArgumentException("Wrong element")
     }

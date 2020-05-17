@@ -1,4 +1,4 @@
-package com.example.forecastapplication
+package com.example.forecastapplication.core
 
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel

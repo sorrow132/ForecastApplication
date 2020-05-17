@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#85F9FF"
+    android:background="@drawable/side_nav_bar"
     tools:context=".futureweather.view.FutureWeatherFragment">
 
     <TextView
