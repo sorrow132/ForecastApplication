@@ -15,7 +15,7 @@ interface IDBRepository {
 
     fun update(city: CityEntity)
 
-    fun getSelectedCity()
+    fun getSelectedCity(): CityEntity
 
     fun updateSelectedCity(city: CityEntity)
 }

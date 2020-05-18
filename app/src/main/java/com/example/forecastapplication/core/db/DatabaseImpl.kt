@@ -24,8 +24,8 @@ class DatabaseImpl(private val dao: CityDao) :
          dao.update(city)
     }
 
-    override fun getSelectedCity() {
-        dao.getSelectedCity()
+    override fun getSelectedCity(): CityEntity{
+       return dao.getSelectedCity()
     }
 
     override fun updateSelectedCity(city: CityEntity) {

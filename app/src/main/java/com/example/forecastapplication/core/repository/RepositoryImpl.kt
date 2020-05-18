@@ -31,8 +31,8 @@ class RepositoryImpl(
         dbRepository.update(city)
     }
 
-    override fun getSelectedCity() {
-        dbRepository.getSelectedCity()
+    override fun getSelectedCity(): CityEntity {
+        return dbRepository.getSelectedCity()
     }
 
     override fun updateSelectedCity(city: CityEntity) {

@@ -3,10 +3,14 @@ package com.example.forecastapplication.futureweather.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.forecastapplication.core.BaseViewModel
+import com.example.forecastapplication.core.ITestRepository
 import com.example.forecastapplication.futureweather.model.FutureWeatherModel
 import com.example.forecastapplication.core.repository.IRepository
+import com.example.forecastapplication.core.request.model.CurrentResponse
+import com.example.forecastapplication.currentweather.viewmodel.MySealedClass
 import com.example.forecastapplication.futureweather.model.FutureWeatherState
 import com.example.forecastapplication.utils.addTo
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -16,7 +20,10 @@ interface IFutureWeatherViewModel {
     fun fetchInfo(city: String)
 }
 
-class FutureWeatherViewModel(private val issueRepository: IRepository) :
+class FutureWeatherViewModel(
+    private val issueRepository: IRepository,
+    secondRepository: ITestRepository
+) :
     BaseViewModel(),
     IFutureWeatherViewModel {
 
@@ -25,7 +32,22 @@ class FutureWeatherViewModel(private val issueRepository: IRepository) :
     override val state: MutableLiveData<FutureWeatherState> = MutableLiveData()
 
     init {
-        fetchInfo("Odessa")
+        secondRepository
+            .myBehavior
+            .distinctUntilChanged()
+            .observeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                when (it) {
+                    is MySealedClass.Exist -> {
+                        fetchInfo(it.myString.city)
+                    }
+                    MySealedClass.NonExist -> {
+                        Observable.empty<CurrentResponse>()
+                    }
+                }
+            }
+            .addTo(compositeDisposable)
     }
 
     override fun fetchInfo(city: String) {

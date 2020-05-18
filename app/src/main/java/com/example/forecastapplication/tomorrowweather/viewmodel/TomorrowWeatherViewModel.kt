@@ -3,10 +3,14 @@ package com.example.forecastapplication.tomorrowweather.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.forecastapplication.core.BaseViewModel
+import com.example.forecastapplication.core.ITestRepository
 import com.example.forecastapplication.core.repository.IRepository
+import com.example.forecastapplication.core.request.model.CurrentResponse
+import com.example.forecastapplication.currentweather.viewmodel.MySealedClass
 import com.example.forecastapplication.tomorrowweather.model.TomorrowWeatherModel
 import com.example.forecastapplication.tomorrowweather.model.TomorrowWeatherState
 import com.example.forecastapplication.utils.addTo
+import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -16,12 +20,34 @@ interface ITomorrowWeatherContract {
     fun fetchInfo(city: String)
 }
 
-class TomorrowWeatherViewModel(private val issueRepository: IRepository) : BaseViewModel(),
+class TomorrowWeatherViewModel(
+    private val issueRepository: IRepository,
+    secondRepository: ITestRepository
+) : BaseViewModel(),
     ITomorrowWeatherContract {
 
     private var fetchCurrencyDisposable: Disposable? = null
 
     override val state: MutableLiveData<TomorrowWeatherState> = MutableLiveData()
+
+    init {
+        secondRepository
+            .myBehavior
+            .distinctUntilChanged()
+            .observeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                when (it) {
+                    is MySealedClass.Exist -> {
+                        fetchInfo(it.myString.city)
+                    }
+                    MySealedClass.NonExist -> {
+                        Observable.empty<CurrentResponse>()
+                    }
+                }
+            }
+            .addTo(compositeDisposable)
+    }
 
     override fun fetchInfo(city: String) {
         fetchCurrencyDisposable?.dispose()

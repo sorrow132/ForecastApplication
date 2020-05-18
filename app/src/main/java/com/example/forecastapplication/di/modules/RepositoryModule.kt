@@ -14,9 +14,6 @@ class RepositoryModule {
     @Provides
     @Singleton
     fun provideRepository(network: WeatherApiService, db: IDBRepository): IRepository {
-        return RepositoryImpl(
-            network,
-            db
-        )
+        return RepositoryImpl(network, db)
     }
 }

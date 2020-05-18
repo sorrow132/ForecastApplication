@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.forecastapplication.R
 import com.example.forecastapplication.WeatherApplication
+import com.example.forecastapplication.core.ITestRepository
 import com.example.forecastapplication.tomorrowweather.adapter.RecyclerViewAdapterTomorrow
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.tomorrowweather.model.TomorrowWeatherState
@@ -22,22 +23,26 @@ import javax.inject.Inject
 
 class TomorrowWeatherFragment : Fragment() {
 
-    private lateinit var viewModel: TomorrowWeatherViewModel
+    @Inject
+    lateinit var secondRepository: ITestRepository
 
     @Inject
     lateinit var repository: IRepository
+
+    private lateinit var viewModel: TomorrowWeatherViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         (requireActivity().application as WeatherApplication).component.inject(this)
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return modelClass.getConstructor(IRepository::class.java)
-                    .newInstance(repository)
+                return modelClass.getConstructor(
+                    IRepository::class.java,
+                    ITestRepository::class.java
+                )
+                    .newInstance(repository, secondRepository)
             }
         }).get(TomorrowWeatherViewModel::class.java)
-
-        viewModel.fetchInfo("Moscow")
     }
 
     override fun onCreateView(

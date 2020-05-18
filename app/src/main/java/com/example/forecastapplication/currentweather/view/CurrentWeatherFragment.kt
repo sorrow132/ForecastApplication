@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.forecastapplication.R
 import com.example.forecastapplication.WeatherApplication
+import com.example.forecastapplication.core.ITestRepository
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.currentweather.model.CurrentWeatherState
 import com.example.forecastapplication.currentweather.viewmodel.CurrentWeatherViewModel
@@ -23,6 +24,9 @@ class CurrentWeatherFragment : Fragment() {
     @Inject
     lateinit var repository: IRepository
 
+    @Inject
+    lateinit var secondRepository: ITestRepository
+
     private lateinit var viewModel: ICurrentWeatherContract
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +35,10 @@ class CurrentWeatherFragment : Fragment() {
 
         viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return modelClass.getConstructor(IRepository::class.java)
-                    .newInstance(repository)
+                return modelClass.getConstructor(
+                    IRepository::class.java, ITestRepository::class.java
+                )
+                    .newInstance(repository, secondRepository)
             }
         }).get(CurrentWeatherViewModel::class.java)
     }

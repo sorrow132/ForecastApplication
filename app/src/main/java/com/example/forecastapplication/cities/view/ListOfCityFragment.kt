@@ -23,6 +23,7 @@ import com.example.forecastapplication.core.repository.IDBRepository
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.cities.viewmodel.IListOfCityViewModelContract
 import com.example.forecastapplication.cities.viewmodel.ListOfCityViewModel
+import com.example.forecastapplication.core.ITestRepository
 import com.example.forecastapplication.core.db.CityEntity
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import io.reactivex.subjects.BehaviorSubject
@@ -40,13 +41,19 @@ class ListOfCityFragment : Fragment() {
     @Inject
     lateinit var repository: IRepository
 
+    @Inject
+    lateinit var secondRepository: ITestRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         (requireActivity().application as WeatherApplication).component.inject(this)
         viewModel = ViewModelProvider(this, object : ViewModelProvider.Factory {
             override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-                return modelClass.getConstructor(IDBRepository::class.java)
-                    .newInstance(repository)
+                return modelClass.getConstructor(
+                    IDBRepository::class.java,
+                    ITestRepository::class.java
+                )
+                    .newInstance(repository, secondRepository)
             }
         }).get(ListOfCityViewModel::class.java)
     }
