@@ -5,10 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.forecastapplication.core.BaseViewModel
 import com.example.forecastapplication.cities.model.CitiesState
 import com.example.forecastapplication.cities.model.CityModel
-import com.example.forecastapplication.core.ITestRepository
+import com.example.forecastapplication.core.repository.ITestRepository
 import com.example.forecastapplication.core.db.CityEntity
 import com.example.forecastapplication.core.repository.IDBRepository
-import com.example.forecastapplication.currentweather.viewmodel.MySealedClass
 import com.example.forecastapplication.utils.addTo
 import io.reactivex.Completable
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -91,7 +90,7 @@ class ListOfCityViewModel(
         Completable
             .fromAction {
                 cityDatabase.updateSelectedCity(city)
-                secondRepository.test(city)
+                secondRepository.setSelectedCity(city)
             }
             .subscribeOn(Schedulers.io())
             .subscribe()

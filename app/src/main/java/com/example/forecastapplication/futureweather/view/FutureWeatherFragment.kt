@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.forecastapplication.R
 import com.example.forecastapplication.WeatherApplication
-import com.example.forecastapplication.core.ITestRepository
+import com.example.forecastapplication.core.repository.ITestRepository
 import com.example.forecastapplication.futureweather.adapter.RecyclerViewAdapterForecast
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.futureweather.model.FutureWeatherState

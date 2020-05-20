@@ -3,8 +3,7 @@ package com.example.forecastapplication.currentweather.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.forecastapplication.core.BaseViewModel
-import com.example.forecastapplication.core.ITestRepository
-import com.example.forecastapplication.core.repository.IDBRepository
+import com.example.forecastapplication.core.repository.ITestRepository
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.core.request.model.CurrentResponse
 import com.example.forecastapplication.currentweather.model.CurrentWeatherModel

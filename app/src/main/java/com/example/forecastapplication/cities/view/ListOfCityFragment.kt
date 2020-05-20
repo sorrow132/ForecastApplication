@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -23,10 +22,8 @@ import com.example.forecastapplication.core.repository.IDBRepository
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.cities.viewmodel.IListOfCityViewModelContract
 import com.example.forecastapplication.cities.viewmodel.ListOfCityViewModel
-import com.example.forecastapplication.core.ITestRepository
-import com.example.forecastapplication.core.db.CityEntity
+import com.example.forecastapplication.core.repository.ITestRepository
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.list_of_city.*
 import javax.inject.Inject
 

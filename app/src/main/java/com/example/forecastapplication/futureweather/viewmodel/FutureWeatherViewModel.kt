@@ -3,7 +3,7 @@ package com.example.forecastapplication.futureweather.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.forecastapplication.core.BaseViewModel
-import com.example.forecastapplication.core.ITestRepository
+import com.example.forecastapplication.core.repository.ITestRepository
 import com.example.forecastapplication.futureweather.model.FutureWeatherModel
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.core.request.model.CurrentResponse

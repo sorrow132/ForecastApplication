@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.forecastapplication.R
 import com.example.forecastapplication.WeatherApplication
-import com.example.forecastapplication.core.ITestRepository
+import com.example.forecastapplication.core.repository.ITestRepository
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.currentweather.model.CurrentWeatherState
 import com.example.forecastapplication.currentweather.viewmodel.CurrentWeatherViewModel

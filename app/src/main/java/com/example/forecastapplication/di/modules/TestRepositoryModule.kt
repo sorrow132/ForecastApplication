@@ -1,7 +1,7 @@
 package com.example.forecastapplication.di.modules
 
-import com.example.forecastapplication.core.ITestRepository
-import com.example.forecastapplication.core.TestRepository
+import com.example.forecastapplication.core.repository.ITestRepository
+import com.example.forecastapplication.core.repository.TestRepository
 import com.example.forecastapplication.core.repository.IDBRepository
 import dagger.Module
 import dagger.Provides

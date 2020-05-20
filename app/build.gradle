@@ -100,9 +100,6 @@ dependencies {
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
 
-    // Stetho
+// Stetho
     implementation 'com.facebook.stetho:stetho:1.5.1'
-
-    // Joda
-    implementation 'net.danlew:android.joda:2.10.6'
 }
