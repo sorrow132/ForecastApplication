@@ -1,12 +1,12 @@
 package com.example.forecastapplication.core.repository
 
 import com.example.forecastapplication.core.db.CityEntity
-import com.example.forecastapplication.currentweather.viewmodel.MySealedClass
+import com.example.forecastapplication.cities.model.ChosenCityState
 import io.reactivex.subjects.BehaviorSubject
 
 interface ITestRepository {
 
-    val myBehavior: BehaviorSubject<MySealedClass>
+    val myBehavior: BehaviorSubject<ChosenCityState>
 
     fun setSelectedCity(cityEntity: CityEntity)
 }
@@ -14,10 +14,10 @@ interface ITestRepository {
 class TestRepository(private val db: IDBRepository) :
     ITestRepository {
 
-    override val myBehavior: BehaviorSubject<MySealedClass> =
-        BehaviorSubject.createDefault(MySealedClass.NonExist)
+    override val myBehavior: BehaviorSubject<ChosenCityState> =
+        BehaviorSubject.createDefault(ChosenCityState.NonExist)
 
     override fun setSelectedCity(cityEntity: CityEntity) {
-        myBehavior.onNext(MySealedClass.Exist(db.getSelectedCity()))
+        myBehavior.onNext(ChosenCityState.Exist(db.getSelectedCity()))
     }
 }

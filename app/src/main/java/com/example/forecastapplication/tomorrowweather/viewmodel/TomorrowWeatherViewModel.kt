@@ -6,7 +6,7 @@ import com.example.forecastapplication.core.BaseViewModel
 import com.example.forecastapplication.core.repository.ITestRepository
 import com.example.forecastapplication.core.repository.IRepository
 import com.example.forecastapplication.core.request.model.CurrentResponse
-import com.example.forecastapplication.currentweather.viewmodel.MySealedClass
+import com.example.forecastapplication.cities.model.ChosenCityState
 import com.example.forecastapplication.tomorrowweather.model.TomorrowWeatherModel
 import com.example.forecastapplication.tomorrowweather.model.TomorrowWeatherState
 import com.example.forecastapplication.utils.addTo
@@ -38,10 +38,10 @@ class TomorrowWeatherViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is MySealedClass.Exist -> {
-                        fetchInfo(it.myString.city)
+                    is ChosenCityState.Exist -> {
+                        fetchInfo(it.city.city)
                     }
-                    MySealedClass.NonExist -> {
+                    ChosenCityState.NonExist -> {
                         Observable.empty<CurrentResponse>()
                     }
                 }

@@ -9,5 +9,4 @@ class WeatherApplication : Application() {
         .builder()
         .appContext(this)
         .build()
-
 }

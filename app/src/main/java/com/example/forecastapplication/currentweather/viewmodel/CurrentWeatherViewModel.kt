@@ -2,6 +2,7 @@ package com.example.forecastapplication.currentweather.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.forecastapplication.cities.model.ChosenCityState
 import com.example.forecastapplication.core.BaseViewModel
 import com.example.forecastapplication.core.repository.ITestRepository
 import com.example.forecastapplication.core.repository.IRepository
@@ -37,10 +38,10 @@ class CurrentWeatherViewModel(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 when (it) {
-                    is MySealedClass.Exist -> {
-                        fetchWeather(it.myString.city)
+                    is ChosenCityState.Exist -> {
+                        fetchWeather(it.city.city)
                     }
-                    MySealedClass.NonExist -> {
+                    ChosenCityState.NonExist -> {
                         Observable.empty<CurrentResponse>()
                     }
                 }
